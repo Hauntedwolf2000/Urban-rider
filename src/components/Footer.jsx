@@ -73,6 +73,12 @@ const Footer = () => {
       >
         &copy; <span className=" text-red-600">2024</span> URBAN-BIKER
       </Typography>
+      <Typography
+        color="blue-gray"
+        className="text-center  font-normal"
+      >
+        &copy; <span className=" text-red-600">Created with Love</span> By DINESH Kumar SM
+      </Typography>
     </footer>
   );
 };
