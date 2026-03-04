@@ -1,0 +1,23 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+  CI = "false"
+```
+
+---
+
+## Fix 2: Check your repo structure on GitHub
+
+Go to **github.com/Hauntedwolf2000/Urban-rider** and make sure `package.json` is at the **root level**, not inside a subfolder.
+
+It should look like this:
+```
+Urban-rider/
+├── package.json     ✅ must be here at root
+├── src/
+├── public/
+└── netlify.toml     ✅ add this
