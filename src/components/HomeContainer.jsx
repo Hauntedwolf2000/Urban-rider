@@ -80,25 +80,25 @@ const HomeContainer = () => {
       </div>
       <div className="py-2 flex-1 flex items-center ">
         <div className="w-full flex items-center justify-center relative">
-          <div className="w-full absolute hidden md:flex items-center pt-64 lg:pt-24 md:px-39 py-2 gap-20 flex-wrap justify-center">
+          <div className="w-full flex flex-wrap items-center justify-center gap-6 px-4 py-6">
             {heroData &&
               heroData.map((n) => (
                 <div
                   key={n.id}
-                  className=" lg:w-190 min-w-[190px]  p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center"
+                  className="lg:w-190 min-w-[190px] p-4 bg-cardOverlay backdrop-blur-md rounded-3xl flex flex-col items-center justify-center"
                 >
                   <img
                     src={n.imagesrc}
-                    alt="helmet"
-                    className="w-20 lg:w-40 -mt-10 lg:-mt-20 "
-                  ></img>
-                  <p className="text-base  lg:text-xl font-semibold mt-1 lg:mt-2">
+                    alt={n.name}
+                    className="w-20 lg:w-40 -mt-10 lg:-mt-20"
+                  />
+                  <p className="text-base lg:text-xl font-semibold mt-1 lg:mt-2">
                     {n.name}
                   </p>
-                  <p className="text-[10px] lg:text-sm text-lighttextGray font-semibold justify-center text-center my-1 lg:my-2">
+                  <p className="text-[10px] lg:text-sm text-lighttextGray font-semibold text-center my-1 lg:my-2">
                     {n.decp}
                   </p>
-                  <p className=" text-xs text-red-600 pt-2">{n.price}</p>
+                  <p className="text-xs text-red-600 pt-2">{n.price}</p>
                 </div>
               ))}
           </div>

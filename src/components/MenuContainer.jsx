@@ -1,54 +1,53 @@
 import React, { useState } from "react";
-import { IoFastFood } from "react-icons/io5";
-import { catagories } from "../utils/data"; // Assuming the correct import
+import { IoBicycle } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { catagories } from "../utils/data";
 import RowContainer from "./RowContainer";
 import { useStateValue } from "../context/StateProvider";
 
 const MenuContainer = () => {
   const [filter, setFilter] = useState("Select Category");
-
-  const [{ products }, dispatch] = useStateValue();
+  const [{ products }] = useStateValue();
 
   return (
-    <section className="w-full my-6 pl-8" id="menu">
+    <section className="w-full my-6 px-4 lg:px-12" id="menu">
       <div className="w-full flex flex-col items-center justify-center">
-        <p className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-16 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100 mr-auto">
+        <p className="text-3xl font-semibold text-headingColor relative mb-6 text-center">
           Our Hot Gears
+          <span className="block w-20 h-1 bg-gradient-to-tr from-orange-400 to-orange-600 rounded-lg mt-2 mx-auto"></span>
         </p>
 
-        <div className="w-full flex items-center justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none">
+        {/* Centered category cards */}
+        <div className="w-full flex flex-wrap justify-center gap-6 py-4">
           {catagories &&
             catagories.map((catagory) => (
               <motion.div
-                whileTap={{ scale: 0.75 }}
+                whileTap={{ scale: 0.9 }}
                 key={catagory.id}
-                className={`group ${
-                  filter === catagory.urlParamName ? "bg-cartNumBg" : "bg-card"
-                } w-24 min-w-[94px] h-28 cursor-pointer rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center hover:bg-cartNumBg `}
+                className={`transition duration-300 cursor-pointer rounded-xl shadow-md w-28 h-32 flex flex-col items-center justify-center
+                  ${
+                    filter === catagory.urlParamName
+                      ? "bg-orange-500 text-white ring-4 ring-orange-300"
+                      : "bg-white hover:bg-orange-100"
+                  }`}
                 onClick={() => setFilter(catagory.urlParamName)}
               >
                 <div
-                  className={`w-10 h-10 rounded-full shadow-lg ${
-                    filter === catagory.urlParamName
-                      ? "bg-white"
-                      : "bg-cartNumBg"
-                  } group-hover:bg-white flex items-center justify-center`}
-                >
-                  <IoFastFood
-                    className={`${
+                  className={`w-12 h-12 flex items-center justify-center rounded-full
+                    ${
                       filter === catagory.urlParamName
-                        ? "text-textColor"
-                        : "text-white"
-                    } group-hover:text-textColor text-lg`}
-                  />
+                        ? "bg-white text-orange-500"
+                        : "bg-orange-500 text-white"
+                    } transition-all duration-200 shadow-lg`}
+                >
+                  <IoBicycle size={24} />
                 </div>
                 <p
-                  className={`text-sm ${
+                  className={`mt-3 text-sm font-medium text-center ${
                     filter === catagory.urlParamName
                       ? "text-white"
-                      : "text-textColor"
-                  } group-hover:text-white`}
+                      : "text-gray-800"
+                  }`}
                 >
                   {catagory.name}
                 </p>
@@ -56,10 +55,13 @@ const MenuContainer = () => {
             ))}
         </div>
 
-        <div className="w-full">
+        {/* Filtered Row Items */}
+        <div className="w-full mt-8">
           <RowContainer
             flag={false}
-            data={products?.filter((products) => products.catagory === filter)} // Assuming 'catagory' is the property name in your products
+            data={products?.filter(
+              (item) => item.catagory === filter
+            )}
           />
         </div>
       </div>
